@@ -598,6 +598,7 @@ img {
     left: 0;
     height: 100%;
     z-index: 1;
+    display: none;
 }
 
 #sideMenuClose {
@@ -1083,6 +1084,7 @@ img {
 
 .single_gallery_item {
     margin-bottom: 100px;
+    display: inline-block;
     overflow: hidden
 }
 
@@ -1328,6 +1330,8 @@ img {
     background-color: #fff;
     border-top: 2px solid #e5e5e5;
     padding: 100px 0 50px;
+    position:relative;
+display:block;
 }
 
 .footer_content > p {
