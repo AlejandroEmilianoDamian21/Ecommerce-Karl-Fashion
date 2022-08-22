@@ -1,10 +1,16 @@
 const items = document.getElementById('items');
 const templateCard = document.getElementById('template-card').content
 const fragment = document.createDocumentFragment();
+let carrito =  {};
 
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
+});
+
+//Esperamos el evento CLICK en el boton
+items.addEventListener('click', e => {
+    addCarrito(e);
 });
 
 const fetchData = async() =>{
@@ -14,11 +20,12 @@ const fetchData = async() =>{
         // console.log(data);
         pintarCards(data);
     }catch(error){
-        console.error();
+        console.erwwror();
     }
 
 }
 
+//Pintamos los productos
 const pintarCards = data => {
         // console.log(data);
     data.forEach(producto => {
@@ -30,8 +37,35 @@ const pintarCards = data => {
         const clone = templateCard.cloneNode(true);
         fragment.appendChild(clone);
     })
-
     items.appendChild(fragment);
+}
+
+//Agregar aL carrito
+const addCarrito = e =>{
+    // console.log(e.target);
+    // console.log(e.target.classList.contains('btn-carrito'));
+    if(e.target.classList.contains('btn-carrito')){
+        // console.log(e.target.parentElement);
+        setCarrito(e.target.parentElement);
+    }
+    e.stopPropagation();
+}
+
+const setCarrito = objeto => {
+    console.log(objeto);
+    const producto = {
+        id: objeto.querySelector('.btn-carrito').dataset.id,
+        nombre: objeto.querySelector('p').textContent,
+        precio: objeto.querySelector('h4').textContent,
+        cantidad: 1
+    }
+    if(carrito.hasOwnProperty(producto.id)){
+        producto.cantidad = carrito[producto.id].cantidad + 1;
+    }
+    carrito[producto.id] = {...producto}
+
+    console.log(carrito);
+    // console.log(carrito);
 }
 
 // let carrito = ['pene1'];
