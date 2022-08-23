@@ -171,8 +171,8 @@
         $.scrollUp({
             scrollSpeed: 1000,
             easingType: 'easeInOutQuart',
-            scrollText: '<i class="ti-angle-up" aria-hidden="true"></i>'
-        });
+            scrollText: '<i class="ti-angle-up" aria-hidden="true" "></i>'
+        }).style({margin: "20px"});
     }
 
     // :: 11.0 Slider Range Price Active Code

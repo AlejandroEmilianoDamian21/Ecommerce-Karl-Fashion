@@ -275,16 +275,17 @@ img {
 
 #scrollUp {
     background-color: #ff084e;
-    border-radius: 0;
+    /* margin-right: 2%; */
+    border-radius: 50px;
     bottom: 0;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
     color: #fff;
-    font-size: 24px;
-    height: 40px;
-    line-height: 40px;
-    right: 60px;
+    font-size: 20px;
+    height: 60px;
+    line-height: 60px;
+    right:10px;
     text-align: center;
-    width: 40px;
+    width: 60px;
 }
 
 .section_padding_100 {
@@ -1166,8 +1167,10 @@ img {
 }
 
 .product-description .add-to-cart-btn {
+    background: none;
+    border: none;
     margin-top: 50px;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
     color: #ff084e;
     display: block;
