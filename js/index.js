@@ -1,5 +1,11 @@
+const cards = document.getElementById('cards');
 const items = document.getElementById('items');
+const footer = document.getElementById('footer');
+
 const templateCard = document.getElementById('template-card').content
+const templateFooter = document.getElementById('template-footer').content
+const templateCarrito = document.getElementById('template-carrito').content
+
 const fragment = document.createDocumentFragment();
 let carrito =  {};
 
@@ -9,8 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //Esperamos el evento CLICK en el boton
-items.addEventListener('click', e => {
+cards.addEventListener('click', e => {
     addCarrito(e);
+
+    Swal.fire(
+        'Producto agregado al Carrito!',
+        'Click en el boton para continuar',
+        'success'
+      )
+
 });
 
 const fetchData = async() =>{
@@ -20,7 +33,7 @@ const fetchData = async() =>{
         // console.log(data);
         pintarCards(data);
     }catch(error){
-        console.erwwror();
+        console.error();
     }
 
 }
@@ -31,13 +44,13 @@ const pintarCards = data => {
     data.forEach(producto => {
         // console.log(producto);
         templateCard.querySelector('p').textContent = producto.title;
-        templateCard.querySelector('h4').textContent = "$"+ producto.precio;
+        templateCard.querySelector('h4').textContent = producto.precio;
         templateCard.querySelector('img').setAttribute("src",producto.thumbnailUrl);
-         templateCard.querySelector('button').dataset.id = producto.id;
+        templateCard.querySelector('button').dataset.id = producto.id;
         const clone = templateCard.cloneNode(true);
         fragment.appendChild(clone);
     })
-    items.appendChild(fragment);
+    cards.appendChild(fragment);
 }
 
 //Agregar aL carrito
@@ -52,20 +65,39 @@ const addCarrito = e =>{
 }
 
 const setCarrito = objeto => {
-    console.log(objeto);
+    //console.log(objeto);
     const producto = {
         id: objeto.querySelector('.btn-carrito').dataset.id,
         nombre: objeto.querySelector('p').textContent,
+        cantidad: 1,
         precio: objeto.querySelector('h4').textContent,
-        cantidad: 1
     }
     if(carrito.hasOwnProperty(producto.id)){
         producto.cantidad = carrito[producto.id].cantidad + 1;
     }
     carrito[producto.id] = {...producto}
 
-    console.log(carrito);
+    pintarCarrito();
     // console.log(carrito);
+    // console.log(carrito);
+}
+
+const pintarCarrito = () => {
+    console.log(carrito);
+    items.innerHTML = ''
+    Object.values(carrito).forEach(producto => {
+        templateCarrito.querySelector('th').textContent = producto.id;
+        templateCarrito.querySelectorAll('td')[0].textContent = producto.nombre;
+        templateCarrito.querySelectorAll('td')[1].textContent = producto.cantidad;
+        templateCarrito.querySelector('.btn-info').dataset.id = producto.id;
+        templateCarrito.querySelector('.btn-danger').dataset.id = producto.id;
+        templateCarrito.querySelector('span').textContent = producto.cantidad * producto.precio
+
+
+        const clone = templateCarrito.cloneNode(true)
+        fragment.appendChild(clone)
+    })
+    items.appendChild(fragment)
 }
 
 // let carrito = ['pene1'];
