@@ -17,13 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 //Esperamos el evento CLICK en el boton
 cards.addEventListener('click', e => {
     addCarrito(e);
-
-    Swal.fire(
-        'Producto agregado al Carrito!',
-        'Click en el boton para continuar',
-        'success'
-      )
-
 });
 
 const fetchData = async() =>{
@@ -60,6 +53,12 @@ const addCarrito = e =>{
     if(e.target.classList.contains('btn-carrito')){
         // console.log(e.target.parentElement);
         setCarrito(e.target.parentElement);
+        Swal.fire(
+            'Producto agregado al Carrito!',
+            'Click en el boton para continuar',
+            'success'
+          )
+
     }
     e.stopPropagation();
 }
