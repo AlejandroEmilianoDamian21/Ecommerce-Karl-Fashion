@@ -1092,8 +1092,7 @@ img {
 .product-img {
     position: relative;
     z-index: 1;
-    overflow: hidden;
-    border-radius: 10px;
+    overflow: hidden
 }
 
 .product-img > img {
@@ -1175,7 +1174,6 @@ img {
     font-weight: 700;
     color: #ff084e;
     display: block;
-    text-align: center;
 }
 
 .product-description .add-to-cart-btn:hover {
